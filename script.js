@@ -56,3 +56,48 @@ function getLocalStorage(key) {
 function removeLocalStorage (keyName) {
     localStorage.removeItem(keyName);
 }
+
+
+
+
+
+
+// Web Workers API
+
+
+// getCurrentPosition
+const showLoc = document.getElementById('showLoc');
+const watchLoc = document.getElementById('watchLoc');
+
+function getCurrentPosition() {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPoss)
+    }
+    else {
+        showLoc.innerText = 'geolocation service in not available in your browser'
+    }
+}
+
+function showPoss(position) {
+    showLoc.innerHTML = "Latitude: " + position.coords.latitude +
+    '</br>Longitude: ' + position.coords.longitude;
+}
+
+
+
+// watch location 
+function watchPosition() {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(watchPoss)
+    }
+    else {
+        watchLoc.innerText = 'geolocation service in not available in your browser'
+    }
+}
+
+function watchPoss(poss) {
+    watchLoc.innerHTML = "Latitude: " + poss.coords.latitude +
+    '</br>Longitude: ' + poss.coords.longitude;
+}
